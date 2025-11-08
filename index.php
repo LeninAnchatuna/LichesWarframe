@@ -23,7 +23,7 @@
             font-weight: 600;
         }
 
-        /* Nuevo rectángulo con 5 links distribuidos equitativamente */
+        /* Barra de navegación*/
         .sub-nav {
             background: #b8afaf; /* mismo color que el header */
             width: 100%;
@@ -57,7 +57,7 @@
             text-decoration: underline;
         }
 
-        /* Responsive: en pantallas pequeñas distribuir en filas */
+        /* En pantallas pequeñas distribuir en filas */
         @media (max-width: 600px) {
             .sub-nav {
                 grid-template-columns: repeat(2, 1fr);
@@ -67,7 +67,7 @@
             .sub-nav a {
                 border-right: 1px solid rgba(0,0,0,0.06);
             }
-            .sub-nav a:nth-child(2n) { border-right: none; } /* quitar borde derecho en segundo de cada fila */
+            .sub-nav a:nth-child(2n) { border-right: none; } 
         }
 
          main { 
@@ -247,7 +247,7 @@
             padding: 8px 16px;
         }
          #cuestionario p {
-            font-size: 18px; /* Tamaño de fuente igual que los demás párrafos */
+            font-size: 18px; 
             line-height: 1.6;
             margin-bottom: 15px;
         }
@@ -272,13 +272,13 @@
     <nav class="sub-nav">
         <a href="#welcome"><strong>Bienvenido</strong></a>
         <a href="#liches"><strong>Liches</strong></a>
-        <a href="#cuestionario"><strong>Formulario</strong></a> 
         <a href="#eliminarlos"><strong>Cómo eliminarlos</strong></a>
+        <a href="#cuestionario"><strong>Formulario</strong></a> 
         <a href="#contactos"><strong>Contactos</strong></a>         
     </nav>
 
     <main>
-        <!-- Sección para link1 -->
+        <!-- Sección para Bienvenida -->
         <section id="welcome">
             <h1>Bienvenido a mi pagina</h1>
             <p>
@@ -304,10 +304,10 @@
         </section>
         <hr>
 
-        <!-- Sección para link2 -->
+        <!-- Sección para liches -->
         <section id="liches">
             <h1>Liches de warframe</h1>
-
+            <!-- Liches Kuva -->
             <h2>Liches kuva</h2>
             <div class="lichen-row">
                 <div class="col">
@@ -373,6 +373,7 @@
             </table>
             <hr>
             
+            <!-- Hermanas de Parvos -->
             <h2>Hermanas de Parvos</h2>
             <div class="lichen-row">
                 <div class="col">
@@ -436,6 +437,7 @@
             </table>
             <hr>
 
+            <!-- Liches Coda -->
              <h2>Liches Coda</h2>
             <div class="lichen-row">
                 <div class="col">
@@ -502,7 +504,7 @@
         </section>
         <hr>
 
-        <!-- Nueva sección: guías en video -->
+        <!-- Sección para Guías en video -->
         <section id="eliminarlos">
             <h1>Guías para eliminar a los liches</h1>
             <p>Descubre las estrategias más efectivas para derrotar a cada tipo de liche con los siguientes videos.</p>
@@ -544,43 +546,123 @@
         </section>
         <hr>
         
-        <!-- Nueva sección: cuestionario (link3) -->
+         <!-- Sección para cuestionario -->
         <section id="cuestionario">
             <h1>Cuentanos sobre tu experiencia con los liches</h1>
             <p>Comparte brevemente tu experiencia enfrentando a un liche: contexto, dificultad y resultados.</p>
 
-            <form id="form-cuestionario" action="#" method="post" style="text-align:left;">
-                <h2>Nombre de usuario</h2>
-                <input type="text" name="usuario" placeholder="Ingresa tu nombre de usuario" style="width:100%; max-width:420px; padding:8px;">
+            <form id="form-cuestionario" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>#cuestionario" style="text-align:left;">
+                <!-- 1. Nombre de Tenno -->
+                <h2>Nombre de Tenno</h2>
+                <input type="text" name="tenno_name" placeholder="Escribe tu nombre o alias en el juego." style="width:100%; max-width:640px; padding:8px;">
 
-                <h2>¿Que liche ha matado?</h2>
-                <select name="liche" style="width:100%; max-width:420px; padding:8px;">
-                    <option value="liches kuva">Liches kuva</option>
-                    <option value="liches hermanas de parvos">Liches Hermanas de Parvos</option>
-                    <option value="liches coda">Liches Coda</option>
-                </select>
+                <!-- 2. Plataforma de juego -->
+                <h2>Plataforma de juego</h2>
+                <select name="plataforma" style="width:100%; max-width:420px; padding:8px;">
+                    <option value="">-- Selecciona plataforma --</option>
+                    <option>PC</option>
+                    <option>PlayStation</option>
+                    <option>Xbox</option>
+                    <option>Nintendo Switch</option>
+                </select><br>
+                <small>Selecciona la plataforma en la que juegas Warframe.</small>
 
-                <h2>¿Con qué armas lo ha matado?</h2>
-                <label><input type="checkbox" name="armas[]" value="primaria"> Primaria</label><br>
-                <label><input type="checkbox" name="armas[]" value="secundaria"> Secundaria</label><br>
-                <label><input type="checkbox" name="armas[]" value="cuerpo a cuerpo"> Cuerpo a cuerpo</label>
+                <!-- 3. ¿Has enfrentado a un Kuva Lich? -->
+                <h2>¿Has enfrentado a un Kuva Lich?</h2>
+                <label><input type="radio" name="tuvo_kuva" value="si"> Sí</label>
+                <label style="margin-left:12px;"><input type="radio" name="tuvo_kuva" value="no"> No</label>
+                <br><small>Indica si ya has tenido tu primer encuentro con un Kuva Lich.</small>
 
-                <h2>¿Le ha resultado dificil eliminar al liche?</h2>
-                <label><input type="radio" name="dificil" value="si"> Sí</label>
-                <label style="margin-left:12px;"><input type="radio" name="dificil" value="no"> No</label>
+                <!-- 4. ¿Cuántos Liches o Hermanas has derrotado? -->
+                <h2>¿Cuántos Liches o Hermanas has derrotado?</h2>
+                <input type="number" name="liches_derrotados" min="0" placeholder="Ej: 12" style="width:160px; padding:6px;">
+                <br><small>Escribe el número total de enemigos convertidos o vencidos.</small>
 
-                <h2>Cuentenos de qué forma eliminó al liche</h2>
-                <textarea name="detalle" rows="6" style="width:100%; max-width:600px; padding:8px;" placeholder="Describe cómo lo eliminaste..."></textarea>
+                <!-- 5. Tipo de enemigo que prefieres enfrentar -->
+                <h2>Tipo de enemigo que prefieres enfrentar</h2>
+                <label><input type="checkbox" name="pref[]" value="kuva"> Kuva Liches</label><br>
+                <label><input type="checkbox" name="pref[]" value="parvos"> Hermanas de Parvos</label><br>
+                <label><input type="checkbox" name="pref[]" value="codas"> Códas (en el modo The Index)</label><br>
+                <label><input type="checkbox" name="pref[]" value="ninguno"> Ninguno en especial</label><br>
+                <small>Marca todos los que te resulten más interesantes.</small>
+
+                <!-- 6. Arma más valiosa obtenida de un Lich o Hermana -->
+                <h2>Arma más valiosa obtenida de un Lich o Hermana</h2>
+                <textarea name="arma_valiosa" rows="4" style="width:100%; max-width:640px; padding:8px;" placeholder="Describe cuál fue tu mejor recompensa y por qué te gusta."></textarea>
+
+                <!-- 7. Nivel promedio de rabia de tus Liches antes de vencerlos -->
+                <h2>Nivel promedio de rabia de tus Liches antes de vencerlos</h2>
+                <label style="display:block; margin-bottom:6px;">1️⃣ Calmo — 2️⃣ Irritado — 3️⃣ Furioso — 4️⃣ Enloquecido — 5️⃣ Imparable</label>
+                <input type="range" name="nivel_rabia" min="1" max="5" value="3" step="1" style="width:100%; max-width:575px;">
+                <br><small>Mueve el control para indicar la dificultad promedio que sueles enfrentar.</small>
+
+                <!-- 8. Fecha en que obtuviste tu primer Lich o Hermana -->
+                <h2>Fecha en que obtuviste tu primer Lich o Hermana</h2>
+                <input type="date" name="fecha_primer" style="padding:6px;">
+                <br><small>Indica aproximadamente cuándo comenzaste a enfrentarlos.</small>
+
+                <!-- 9. ¿Qué te gustaría que añadieran para mejorar el sistema Coda? -->
+                <h2>¿Qué te gustaría que añadieran para mejorar el sistema Coda?</h2>
+                <textarea name="reliquia_sugerencia" rows="5" style="width:100%; max-width:640px; padding:8px;" placeholder="Da tu opinión o sugiere ideas para nuevas mecánicas o recompensas."></textarea>
+
+                <!-- 10. Califica tu satisfacción general con el sistema de Liches (1 a 10) -->
+                <h2>Califica tu satisfacción general con el sistema de Liches (1 a 10)</h2>
+                <input type="number" name="satisfaccion" min="1" max="10" placeholder="Ej: 8" style="width:120px; padding:6px;">
+                <br><small>Del 1 (muy insatisfecho) al 10 (muy satisfecho).</small>
 
                 <div style="margin-top:12px;">
                     <button type="reset">Deshacer</button>
                     <button type="submit">Enviar</button>
                 </div>
             </form>
+
+            <!-- Procesar y mostrar los datos enviados -->
+            <?php
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                echo '<div style="background-color: lime; padding: 20px; border-radius: 10px; margin-top: 20px; max-width: 700px; margin-left: auto; margin-right: auto;">';
+                echo '<h3 style="color: #333; margin-top: 0;">Datos enviados:</h3>';
+                echo '<ul style="list-style-type: none; padding: 0; margin: 0;">';
+                
+                // Nombre de Tenno
+                echo '<li><strong>Nombre de Tenno:</strong> ' . htmlspecialchars($_POST['tenno_name']) . '</li>';
+                
+                // Plataforma
+                echo '<li><strong>Plataforma:</strong> ' . htmlspecialchars($_POST['plataforma']) . '</li>';
+                
+                // Enfrentó Kuva Lich
+                echo '<li><strong>¿Has enfrentado a un Kuva Lich?:</strong> ' . htmlspecialchars($_POST['tuvo_kuva']) . '</li>';
+                
+                // Número de Liches derrotados
+                echo '<li><strong>Liches derrotados:</strong> ' . htmlspecialchars($_POST['liches_derrotados']) . '</li>';
+                
+                // Tipos preferidos
+                if(isset($_POST['pref']) && is_array($_POST['pref'])) {
+                    echo '<li><strong>Tipos preferidos:</strong> ' . htmlspecialchars(implode(', ', $_POST['pref'])) . '</li>';
+                }
+                
+                // Arma más valiosa
+                echo '<li><strong>Arma más valiosa:</strong> ' . htmlspecialchars($_POST['arma_valiosa']) . '</li>';
+                
+                // Nivel de rabia
+                echo '<li><strong>Nivel de rabia:</strong> ' . htmlspecialchars($_POST['nivel_rabia']) . '</li>';
+                
+                // Fecha primer Lich
+                echo '<li><strong>Fecha primer Lich:</strong> ' . htmlspecialchars($_POST['fecha_primer']) . '</li>';
+                
+                // Sugerencia para sistema Coda
+                echo '<li><strong>Sugerencia sistema Coda:</strong> ' . htmlspecialchars($_POST['reliquia_sugerencia']) . '</li>';
+                
+                // Satisfacción general
+                echo '<li><strong>Satisfacción general:</strong> ' . htmlspecialchars($_POST['satisfaccion']) . '/10</li>';
+                
+                echo '</ul>';
+                echo '</div>';
+            }
+            ?>
         </section>
     </main>
 
-    <!-- Pie de página: Contactos (anclado por link4) -->
+    <!-- Pie de página: Contactos -->
     <footer id="contactos">
         <h1>Contactos</h1>
         <p>Teléfono: +593 97 904 0773</p>
