@@ -3,314 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <title>Liches de Warframe</title>
     <link rel="icon" type="image/x-icon" href="img/WarframeIcon.ico">
-    <style>
-        .top-header {
-            background: #e6dede; /* color gris */
-            height: 50px;        /* grosor de 50px */
-            width: 100%;
-            display: flex;
-            align-items: center; /* centra verticalmente */
-            justify-content: center; /* centra horizontalmente */
-            padding: 75px;
-            box-sizing: border-box;
-        }
-        .top-header h1 {
-            margin: 0;
-            color: #333;         /* mejor contraste sobre gris claro */
-            font-size: 50px;
-            font-weight: 600;
-        }
-
-        /* Barra de navegación*/
-        .sub-nav {
-            background: #b8afaf; /* mismo color que el header */
-            width: 100%;
-            display: grid;
-            grid-template-columns: repeat(5, 1fr); /* una columna por enlace */
-            align-items: stretch;
-            box-sizing: border-box;
-            border-top: 1px solid rgba(0,0,0,0.06);
-            border-bottom: 1px solid rgba(0,0,0,0.06);
-            height: 56px;
-        }
-        .sub-nav a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #000000;
-            text-decoration: none;
-            font-weight: 500;
-            padding: 15px;
-            border-right: 1px solid rgba(0,0,0,0.06); /* separador entre secciones */
-            box-sizing: border-box;
-            width: 100%;
-            height: 100%;
-            font-size: 22px; /* Incrementar tamaño de links */
-        }
-        .sub-nav a:last-child {
-            border-right: none;
-        }
-        .sub-nav a:hover {
-            background: rgba(0,0,0,0.03);
-            text-decoration: underline;
-        }
-
-        /* En pantallas pequeñas distribuir en filas */
-        @media (max-width: 600px) {
-            .sub-nav {
-                grid-template-columns: repeat(2, 1fr);
-                grid-auto-rows: 48px;
-                gap: 0;
-            }
-            .sub-nav a {
-                border-right: 1px solid rgba(0,0,0,0.06);
-            }
-            .sub-nav a:nth-child(2n) { border-right: none; } 
-        }
-
-         main { 
-            padding: 24px;            
-            font-family:'Times New Roman';
-            max-width: 90%; /* Limitar ancho máximo */
-            margin: 0 auto; /* Centrar contenido */
-        }
-
-        section { 
-            margin: 60px 0; /* Más espacio entre secciones */
-            text-align: center; /* Centrar títulos y contenido */
-        }
-
-        section h1 {
-            font-size: 2.5em;
-            margin-bottom: 30px;
-            font-family:'Times New Roman';
-        }
-
-        section h2 {
-            font-size: 2em;
-            margin: 0px;
-            font-family:'Times New Roman';
-        }
-
-         section h3 {
-            font-size: 1.75em;
-            margin: 0px;
-            font-family:'Times New Roman';
-        }
-
-        /* Ajustar el layout de los liches */
-        .lichen-row {
-            display: flex;
-            align-items: stretch; /* Estirar para igual altura */
-            gap: 40px; /* Más espacio entre columnas */
-            margin: 24px 0 40px;
-            text-align: left; /* Texto alineado a la izquierda */
-        }
-
-        .lichen-row .col {
-            width: 50%; /* Dividir en dos columnas iguales */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .lichen-row .col img {
-            width: 100%;
-            height: 300px; /* Altura fija para todas las imágenes */
-            object-fit: cover; /* Mantener proporción */
-            border-radius: 8px; /* Bordes redondeados */
-        }
-
-        .lichen-row .col p {
-            margin: 0 0 15px;
-            line-height: 1.6;
-            font-size: 18px; /* Tamaño base para todos los párrafos */
-        }
-
-        /* Tabla simple */
-        table {
-            border-collapse: collapse;
-            width: 100%;
-            max-width: 70%;
-            margin: 30px auto; /* Centrar tablas */
-        }
-        table th, table td {
-            border: 1px solid #999;
-            padding: 8px 12px;
-            text-align: left;
-            font-size: 16px; /* Tamaño para el contenido de las tablas */
-        }
-        table th {
-            background: #bbb7b7;
-            font-size: 18px; /* Tamaño para los encabezados de tabla */
-            font-weight: bold;
-        }
-
-        /*Estilo para la sección de guías en video */
-        .guides-container {
-            display: flex;
-            justify-content: space-between;
-            gap: 20px;
-            margin: 30px 0;
-        }
-
-        .guide-section {
-            flex: 1;
-            padding: 15px;
-            background: #f5f5f5;
-            border-radius: 8px;
-        }
-
-        .guide-section h2 {
-            margin-bottom: 15px;
-            font-size: 1.5em;
-        }
-
-        .video-container {
-            position: relative;
-            padding-bottom: 56.25%; /* Aspect ratio 16:9 */
-            height: 0;
-            overflow: hidden;
-        }
-
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        /* Estilos para el pie de página (contactos) */
-        footer#contactos {
-            text-align: center;
-            padding: 24px;
-            background: #e6dede;
-            margin-top: 40px;
-            box-sizing: border-box;
-            font-size: 18px;
-        }
-        footer#contactos h1 { margin: 0 0 12px 0; font-size: 20px; }
-        footer#contactos p { margin: 6px 0; font-size: 18px; }
-        
-        /* Ajustar tamaño en el formulario */
-        form label, 
-        form input, 
-        form select, 
-        form textarea {
-            font-size: 18px;
-        }
-        #form-cuestionario {
-            background-color: #FFE4D4; /* Color piel claro */
-            border-radius: 15px; /* Bordes redondeados */
-            padding: 30px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* Sombra suave */
-            max-width: 700px;
-            margin: 0 auto;
-            box-sizing: border-box;
-        }
-
-        #form-cuestionario h2 {
-            margin-top: 25px;
-            margin-bottom: 15px;
-            color: #333;
-        }
-
-        #form-cuestionario input[type="text"],
-        #form-cuestionario select,
-        #form-cuestionario textarea {
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            background-color: white;
-        }
-
-        #form-cuestionario button {
-            margin: 8px;
-            border-radius: 5px;
-            border: none;
-            background-color: #b8afaf;
-            color: white;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        #form-cuestionario button:hover {
-            background-color: #9e9595;
-        }
-
-        /* Ajustar tamaño de botones */
-        button {
-            font-size: 16px;
-            padding: 8px 16px;
-        }
-         #cuestionario p {
-            font-size: 18px; 
-            line-height: 1.6;
-            margin-bottom: 15px;
-        }
-
-        /* Modificar en la sección <style> */
-        #welcome {
-            text-align: left; /* Alinear todo el contenido a la izquierda */
-        }
-
-        #welcome p {
-            font-size: 18px; /* Tamaño de fuente igual que los demás párrafos */
-            line-height: 1.6;
-            margin-bottom: 15px;
-        }        
-    </style>
 </head>
-<body>
-    <header class="top-header">
-        <h1>Liches en Warframe</h1>
+
+<body class="bg-gray-100 text-gray-900 text-lg leading-relaxed">
+
+    <!-- ENCABEZADO -->
+    <header class="bg-yellow-300 text-center py-6 shadow-md">
+        <h1 class="text-4xl font-extrabold">Liches en Warframe</h1>
     </header>
 
-    <nav class="sub-nav">
-        <a href="#welcome"><strong>Bienvenido</strong></a>
-        <a href="#liches"><strong>Liches</strong></a>
-        <a href="#eliminarlos"><strong>Cómo eliminarlos</strong></a>
-        <a href="#cuestionario"><strong>Formulario</strong></a> 
-        <a href="#contactos"><strong>Contactos</strong></a>         
+    <!-- BARRA DE NAVEGACIÓN -->
+    <nav class="bg-gray-400 shadow-md">
+        <div class="container mx-auto grid grid-cols-5 text-center py-3 text-xl font-bold text-gray-900">
+            <a href="#welcome" class="hover:text-gray-700">Bienvenido</a>
+            <a href="#liches" class="hover:text-gray-700">Liches</a>
+            <a href="#eliminarlos" class="hover:text-gray-700">Cómo eliminarlos</a>
+            <a href="#cuestionario" class="hover:text-gray-700">Formulario</a>
+            <a href="#contactos" class="hover:text-gray-700">Contactos</a>
+        </div>
     </nav>
 
-    <main>
-        <!-- Sección para Bienvenida -->
-        <section id="welcome">
-            <h1>Bienvenido a mi pagina</h1>
-            <p>
+    <main class="container mx-auto px-6 py-10">
+
+        <!-- SECCIÓN BIENVENIDA -->
+       <section id="welcome" class="text-left mb-16 w-full">
+            <h2 class="text-3xl font-bold mb-6">Bienvenido a mi página</h2>
+
+            <p class="max-w-full mb-4">
                 En Warframe, los Liches representan un tipo de enemigo particularmente desafiante y único. 
                 Son adversarios poderosos, que varían en sus orígenes, habilidades y tácticas de combate, creando una 
                 experiencia dinámica para los jugadores. Los tres tipos principales de Liches en el juego son: Liches Kuva,
-                 Hermanas de Parvos y Liches Coda. Cada uno se distingue por sus propias mecánicas de creación y derrota, 
-                 presentando diferentes tipos de amenazas en combate y aportando un nivel adicional de dificultad y
-                  estrategia al juego.
+                Hermanas de Parvos y Liches Coda. Cada uno se distingue por sus propias mecánicas de creación y derrota, 
+                presentando diferentes tipos de amenazas en combate y aportando un nivel adicional de dificultad y
+                estrategia al juego.
             </p>
-            <p>
-                Los Liches están vinculados a un sistema de venganza. En el caso de los Liches Kuva, los jugadores 
+            <p class="max-w-full mb-4">
+            Los Liches están vinculados a un sistema de venganza. En el caso de los Liches Kuva, los jugadores 
                 pueden crear un Liche personal que los persigue a través de misiones y que se vuelve más fuerte conforme 
                 pasa el tiempo. Las Hermanas de Parvos introducen una dinámica en la que las entidades de Parvos Granum se 
                 convierten en formidables oponentes con un enfoque en la movilidad y evasión. Finalmente, los Liches Coda 
-                representan una variante avanzada que se incluye en eventos especiales, añadiendo nuevas capas de dificultad.  
+                representan una variante avanzada que se incluye en eventos especiales, añadiendo nuevas capas de dificultad.
             </p>
-            <p>
+            <p class="max-w-full">
                 En esta página, exploraremos en profundidad las características, fortalezas, debilidades y tácticas 
                 necesarias para enfrentar y derrotar a cada uno de estos Liches, además de cómo obtener sus armas exclusivas 
                 y recompensas.   
             </p>
         </section>
-        <hr>
 
-        <!-- Sección para liches -->
+        <hr class="border-gray-400 my-12">
+
+        <!-- SECCIÓN LICHES -->
         <section id="liches">
-            <h1>Liches de warframe</h1>
-            <!-- Liches Kuva -->
-            <h2>Liches kuva</h2>
-            <div class="lichen-row">
-                <div class="col">
+
+            <h2 class="text-4xl font-bold mb-10 text-center">Liches de Warframe</h2>
+
+            <!-- LICHES KUVA -->
+            <h3 class="text-3xl font-semibold mb-6">Liches Kuva</h3>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+                <div class="space-y-4">
                     <p>
                         Los Liches Kuva son una de las amenazas más icónicas de Warframe. Estos seres son antiguos soldados de los Grineer, 
                         pero han sido corrompidos por la Kuva, un líquido oscuro con grandes poderes. La Kuva es utilizada por los Grineer para 
@@ -333,55 +88,64 @@
                         poderosas como recompensa. 
                     </p>
                 </div>
-                <div class="col">
-                    <img src="img/LichesKuva.jfif" alt="Liches Kuva" style="max-width:100%; height:auto; display:block;">
+
+                <div class="flex justify-center">
+                    <img src="img/LichesKuva.jfif" alt="Liches Kuva" class="rounded-lg shadow-lg max-w-full">
                 </div>
             </div>
 
-            <h3>Datos importantes</h3>
-            <table>
-                <tr>
-                    <th>Características</th>
-                    <th>Descripción</th>
-                    <th>Debilidad</th>
-                    <th>Habilidades especiales</th>
-                </tr>
-                <tr>
-                    <th>Origen</th>
-                    <td>Son soldados Grineer corrompidos por la Kuva, una sustancia misteriosa que les otorga grandes poderes.</td>
-                    <td>Depende del tipo de Liche Kuva (puede ser fuego, electricidad, frío, etc.)</td>
-                    <td>Crecen en poder con el tiempo, se hacen más fuertes con cada enfrentamiento.</td>
-                </tr>
-                <tr>
-                    <th>Método de obtención</th>
-                    <td>Se obtienen tras completar misiones específicas de Liches Kuva y luego enfrentarlos en combate.</td>
-                    <td>Cada Liche tiene una debilidad única basada en el daño elemental o tipo de arma.</td>
-                    <td>Ofrecen la opción de ser convertidos en aliados si el jugador decide hacer un trato.</td>
-                </tr>
-                <tr>
-                    <th>Fortaleza</th>
-                    <td>Son enemigos extremadamente poderosos, con resistencias altas y habilidades que les permiten adaptarse al combate..</td>
-                    <td>Pueden tener una gran resistencia a daños físicos o específicos.</td>
-                    <td>Resistencia a varios tipos de daño, como fuego, electricidad o frío.</td>
-                </tr>
-                <tr>
-                    <th>Estilo de juego</th>
-                    <td>La mejor estrategia es debilitar a los Liches en varias fases, descubrir su debilidad y luego enfrentarlos.</td>
-                    <td>Usar las armas correctas y evitar las trampas que los Liches pueden poner.</td>
-                    <td>Tienen un sistema de venganza que los hace más poderosos con cada enfrentamiento.</td>
-                </tr>
-            </table>
-            <hr>
-            
-            <!-- Hermanas de Parvos -->
-            <h2>Hermanas de Parvos</h2>
-            <div class="lichen-row">
-                <div class="col">
-                    <img src="img/HermanasParvos.jpg" alt="Hermanas de Parvos" style="max-width:100%; height:auto; display:block;">
+            <!-- TABLA KUVA -->
+            <h4 class="text-2xl font-bold mb-4">Datos importantes</h4>
 
+            <table class="w-full border border-gray-500 text-lg mb-16">
+                <thead class="bg-gray-300 font-bold">
+                    <tr>
+                        <th class="border p-3">Características</th>
+                        <th class="border p-3">Descripción</th>
+                        <th class="border p-3">Debilidad</th>
+                        <th class="border p-3">Habilidades especiales</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white">
+                    <tr class="even:bg-gray-100">
+                        <td class="border p-3 font-semibold">Origen</td>
+                        <td class="border p-3">Son soldados Grineer corrompidos por la Kuva, una sustancia misteriosa que les otorga grandes poderes.</td>
+                        <td class="border p-3">Depende del tipo de Liche Kuva (puede ser fuego, electricidad, frío, etc.)</td>
+                        <td class="border p-3">Crecen en poder con el tiempo, se hacen más fuertes con cada enfrentamiento.</td>
+                    </tr>
+                    <tr class="even:bg-gray-100">
+                        <td class="border p-3 font-semibold">Método de obtención</td>
+                        <td class="border p-3">Se obtienen tras completar misiones específicas de Liches Kuva y luego enfrentarlos en combate.</td>
+                        <td class="border p-3">Cada Liche tiene una debilidad única basada en el daño elemental o tipo de arma.</td>
+                        <td class="border p-3">Ofrecen la opción de ser convertidos en aliados si el jugador decide hacer un trato.</td>
+                    </tr>
+                    <tr class="even:bg-gray-100">
+                        <td class="border p-3 font-semibold">Fortaleza</td>
+                        <td class="border p-3">Son enemigos extremadamente poderosos, con resistencias altas y habilidades que les permiten adaptarse al combate.</td>
+                        <td class="border p-3">Pueden tener una gran resistencia a daños físicos o específicos.</td>
+                        <td class="border p-3">Resistencia a varios tipos de daño, como fuego, electricidad o frío.</td>
+                    </tr>
+                    <tr class="even:bg-gray-100">
+                        <td class="border p-3 font-semibold">Estilo de juego</td>
+                        <td class="border p-3">La mejor estrategia es debilitar a los Liches en varias fases, descubrir su debilidad y luego enfrentarlos.</td>
+                        <td class="border p-3">Usar las armas correctas y evitar las trampas que los Liches pueden poner.</td>
+                        <td class="border p-3">Tienen un sistema de venganza que los hace más poderosos con cada enfrentamiento.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <hr class="border-gray-400 my-12">
+
+            <!-- HERMANAS DE PARVOS -->
+            <h3 class="text-3xl font-semibold mb-6">Hermanas de Parvos</h3>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+                <div class="flex justify-center md:order-1 order-2">
+                    <img src="img/HermanasParvos.jpg" alt="Hermanas de Parvos" class="rounded-lg shadow-lg">
                 </div>
-                <div class="col">
-                    <p>
+
+                <div class="space-y-4 md:order-2 order-1">
+                   <p>
                         Las Hermanas de Parvos son una de las adiciones más recientes y complejas en Warframe. Estas entidades son creadas 
                         a partir del poder oscuro de Parvos Granum, un personaje clave dentro del lore del juego. Parvos Granum fue el líder 
                         de la facción Corpus, y sus hijas, conocidas como Hermanas de Parvos, se han convertido en formidables oponentes de 
@@ -402,45 +166,53 @@
                 </div>
             </div>
 
-            <h3>Datos importantes</h3>
-            <table>
-                <tr>
-                    <th>Características</th>
-                    <th>Descripción</th>
-                    <th>Debilidad</th>
-                    <th>Habilidades especiales</th>
-                </tr>
-                <tr>
-                    <th>Origen</th>
-                    <td>Hijas del líder Corpus Parvos Granum, convertidas en guerreras poderosas con habilidades especiales.</td>
-                    <td>Varía según la hermana; algunas son más vulnerables a armas de largo alcance, mientras que otras lo son a ataques de área.</td>
-                    <td>Habilidad de cambiar su estilo de combate y adaptarse a las estrategias del jugador.</td>
-                </tr>
-                <tr>
-                    <th>Método de obtención</th>
-                    <td>Se obtienen a través de misiones especiales que requieren rastrear y eliminar a cada hermana.</td>
-                    <td>Depende de la táctica de la hermana; algunas pueden tener inmunidades a ciertos tipos de daño.</td>
-                    <td>Alta velocidad y evasión, habilidades de sigilo.</td>
-                </tr>
-                <tr>
-                    <th>Fortaleza</th>
-                    <td>Son extremadamente rápidas y evasivas, con alta resistencia a ciertos tipos de daño.</td>
-                    <td>Muy difícil de derrotar sin una estrategia bien pensada.</td>
-                    <td>Movilidad avanzada, con la habilidad de teleportarse y evadir ataques.</td>
-                </tr>
-                <tr>
-                    <th>Estilo de juego</th>
-                    <td>Las hermanas requieren tácticas de sigilo y evasión. Es recomendable utilizar armas de largo alcance o habilidades de control de masas.</td>
-                    <td>Necesitarás adaptarte a sus cambios de estilo y patrones de combate.</td>
-                    <td>Tácticas de engaño, invisibilidad y ataques rápidos.</td>
-                </tr>
-            </table>
-            <hr>
+            <!-- TABLA PARVOS -->
+            <h4 class="text-2xl font-bold mb-4">Datos importantes</h4>
 
-            <!-- Liches Coda -->
-             <h2>Liches Coda</h2>
-            <div class="lichen-row">
-                <div class="col">
+            <table class="w-full border border-gray-500 text-lg mb-16">
+                <thead class="bg-gray-300 font-bold">
+                    <tr>
+                        <th class="border p-3">Características</th>
+                        <th class="border p-3">Descripción</th>
+                        <th class="border p-3">Debilidad</th>
+                        <th class="border p-3">Habilidades especiales</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white">
+                    <tr class="even:bg-gray-100">
+                        <td class="border p-3 font-semibold">Origen</td>
+                        <td class="border p-3">Hijas del líder Corpus Parvos Granum, convertidas en guerreras poderosas con habilidades especiales.</td>
+                        <td class="border p-3">Varía según la hermana; algunas son más vulnerables a armas de largo alcance, mientras que otras lo son a ataques de área.</td>
+                        <td class="border p-3">Habilidad de cambiar su estilo de combate y adaptarse a las estrategias del jugador.</td>
+                    </tr>
+                    <tr class="even:bg-gray-100">
+                        <td class="border p-3 font-semibold">Método de obtención</td>
+                        <td class="border p-3">Se obtienen a través de misiones especiales que requieren rastrear y eliminar a cada hermana.</td>
+                        <td class="border p-3">Depende de la táctica de la hermana; algunas pueden tener inmunidades a ciertos tipos de daño.</td>
+                        <td class="border p-3">Alta velocidad y evasión, habilidades de sigilo.</td>
+                    </tr>
+                    <tr class="even:bg-gray-100">
+                        <td class="border p-3 font-semibold">Fortaleza</td>
+                        <td class="border p-3">Son extremadamente rápidas y evasivas, con alta resistencia a ciertos tipos de daño.</td>
+                        <td class="border p-3">Muy difícil de derrotar sin una estrategia bien pensada.</td>
+                        <td class="border p-3">Movilidad avanzada, con la habilidad de teleportarse y evadir ataques.</td>
+                    </tr>
+                    <tr class="even:bg-gray-100">
+                        <td class="border p-3 font-semibold">Estilo de juego</td>
+                        <td class="border p-3">Las hermanas requieren tácticas de sigilo y evasión. Es recomendable utilizar armas de largo alcance o habilidades de control de masas.</td>
+                        <td class="border p-3">Necesitarás adaptarte a sus cambios de estilo y patrones de combate</td>
+                        <td class="border p-3">Tácticas de engaño, invisibilidad y ataques rápidos.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <hr class="border-gray-400 my-12">
+
+            <!-- LICHES CODA -->
+            <h3 class="text-3xl font-semibold mb-6">Liches Coda</h3>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+                <div class="space-y-4">
                     <p>
                        Los Liches Coda son la variante más avanzada y desafiante de los Liches disponibles en Warframe. 
                        Introducidos en la Operación Coda, estos liches tienen una relación más directa con la narrativa central del juego, 
@@ -463,211 +235,226 @@
                         perfecto de sus movimientos, habilidades y recursos.
                     </p>
                 </div>
-                <div class="col">
-                    <img src="img/LichesCoda.jfif" alt="Liches Coda" style="max-width:100%; height:auto; display:block;">
+
+                <div class="flex justify-center">
+                    <img src="img/LichesCoda.jfif" alt="Liches Coda" class="rounded-lg shadow-lg">
                 </div>
             </div>
 
-            <h3>Datos importantes</h3>
-            <table>
-                <tr>
-                    <th>Características</th>
-                    <th>Descripción</th>
-                    <th>Debilidad</th>
-                    <th>Habilidades especiales</th>
-                </tr>
-                <tr>
-                    <th>Origen</th>
-                    <td>Introducidos a través de la Operación Coda, con una relación más profunda con la historia principal del juego.</td>
-                    <td>Alta resistencia, pero vulnerable a ataques de alto impacto.</td>
-                    <td>Capacidad de alterar el entorno y las condiciones de combate.</td>
-                </tr>
-                <tr>
-                    <th>Método de obtención</th>
-                    <td>Obtención a través de completar misiones de la Operación Coda y luego enfrentarse a estos liches.</td>
-                    <td>Pueden tener una defensa muy fuerte contra ataques convencionales.</td>
-                    <td>Invocan refuerzos y manipulan el terreno de combate.</td>
-                </tr>
-                <tr>
-                    <th>Fortaleza</th>
-                    <td>Son extremadamente poderosos, con habilidades que les permiten modificar el campo de batalla.</td>
-                    <td>Requieren tácticas avanzadas y adaptabilidad.</td>
-                    <td>Manipulación del entorno, invocación de otros enemigos.</td>
-                </tr>
-                <tr>
-                    <th>Estilo de juego</th>
-                    <td>Se necesita una estrategia de equipo y habilidades avanzadas. Los jugadores deben adaptarse a las condiciones cambiantes de combate.</td>
-                    <td>Usar armas de impacto y control de masas es esencial.</td>
-                    <td>Grandes habilidades defensivas y ofensivas, capaces de invocar aliados.</td>
-                </tr>
+            <!-- TABLA CODA -->
+            <h4 class="text-2xl font-bold mb-8">Datos importantes</h4>
+
+            <table class="w-full border border-gray-500 text-lg mb-16">
+                <thead class="bg-gray-300 font-bold">
+                    <tr>
+                        <th class="border p-3">Características</th>
+                        <th class="border p-3">Descripción</th>
+                        <th class="border p-3">Debilidad</th>
+                        <th class="border p-3">Habilidades especiales</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white">
+                    <tr class="even:bg-gray-100">
+                        <td class="border p-3 font-semibold">Origen</td>
+                        <td class="border p-3">Introducidos a través de la Operación Coda, con una relación más profunda con la historia principal del juego.</td>
+                        <td class="border p-3">Alta resistencia, pero vulnerable a ataques de alto impacto.</td>
+                        <td class="border p-3">Capacidad de alterar el entorno y las condiciones de combate.</td>
+                    </tr>
+                    <tr class="even:bg-gray-100">
+                        <td class="border p-3 font-semibold">Método de obtención</td>
+                        <td class="border p-3">Obtención a través de completar misiones de la Operación Coda y luego enfrentarse a estos liches.</td>
+                        <td class="border p-3">Pueden tener una defensa muy fuerte contra ataques convencionales.</td>
+                        <td class="border p-3">Invocan refuerzos y manipulan el terreno de combate.</td>
+                    </tr>
+                    <tr class="even:bg-gray-100">
+                        <td class="border p-3 font-semibold">Fortaleza</td>
+                        <td class="border p-3">Son extremadamente poderosos, con habilidades que les permiten modificar el campo de batalla.</td>
+                        <td class="border p-3">Requieren tácticas avanzadas y adaptabilidad.</td>
+                        <td class="border p-3">Manipulación del entorno, invocación de otros enemigos.</td>
+                    </tr>
+                    <tr class="even:bg-gray-100">
+                        <td class="border p-3 font-semibold">Estilo de juego</td>
+                        <td class="border p-3">Se necesita una estrategia de equipo y habilidades avanzadas. Los jugadores deben adaptarse a las condiciones cambiantes de combate.</td>
+                        <td class="border p-3">Usar armas de impacto y control de masas es esencial.</td>
+                        <td class="border p-3">Grandes habilidades defensivas y ofensivas, capaces de invocar aliados.</td>
+                    </tr>
+                </tbody>
             </table>
         </section>
-        <hr>
 
-        <!-- Sección para Guías en video -->
-        <section id="eliminarlos">
-            <h1>Guías para eliminar a los liches</h1>
-            <p>Descubre las estrategias más efectivas para derrotar a cada tipo de liche con los siguientes videos.</p>
+        <hr class="border-gray-400 my-12">
 
-            <div class="guides-container">
-                <div class="guide-section">
-                    <h2>Cómo eliminar a Liches Kuva</h2>
-                    <div class="video-container">
-                        <iframe src="https://www.youtube.com/watch?v=t0sTfuPO9_Q" 
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        <!-- GUÍAS EN VIDEO -->
+        <section id="eliminarlos" class="mb-20">
+            <h2 class="text-3xl font-bold text-center mb-10">Guías para eliminar a los Liches</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+                <div class="bg-white shadow-lg rounded-lg p-6">
+                    <h3 class="text-xl font-semibold mb-4">Cómo eliminar a Liches Kuva</h3>
+                    <div class="aspect-video mb-3">
+                        <iframe class="w-full h-full rounded"
+                                src="https://www.youtube.com/embed/t0sTfuPO9_Q"
                                 allowfullscreen>
                         </iframe>
                     </div>
-                    <a href="https://www.youtube.com/watch?v=t0sTfuPO9_Q">Presionar si el video no funciona</a>
+                    <a href="https://www.youtube.com/watch?v=t0sTfuPO9_Q" class="text-blue-600 underline">Presionar si el video no funciona</a>
                 </div>
 
-                <div class="guide-section">
-                    <h2>Cómo eliminar a Hermanas de Parvos</h2>
-                    <div class="video-container">
-                        <iframe src="https://www.youtube.com/watch?v=9-bdCY-ENqw" 
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                <div class="bg-white shadow-lg rounded-lg p-6">
+                    <h3 class="text-xl font-semibold mb-4">Cómo eliminar a Hermanas de Parvos</h3>
+                    <div class="aspect-video mb-3">
+                        <iframe class="w-full h-full rounded"
+                                src="https://www.youtube.com/embed/9-bdCY-ENqw"
                                 allowfullscreen>
                         </iframe>
                     </div>
-                    <a href="https://www.youtube.com/watch?v=9-bdCY-ENqw">Preisonar si el video no funciona</a>
+                    <a href="https://www.youtube.com/watch?v=9-bdCY-ENqw" class="text-blue-600 underline">Presionar si el video no funciona</a>
                 </div>
 
-                <div class="guide-section">
-                    <h2>Cómo eliminar a Liches Coda</h2>
-                    <div class="video-container">
-                        <iframe src="https://www.youtube.com/watch?v=GGu1MUUJCQA" 
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                <div class="bg-white shadow-lg rounded-lg p-6">
+                    <h3 class="text-xl font-semibold mb-4">Cómo eliminar a Liches Coda</h3>
+                    <div class="aspect-video mb-3">
+                        <iframe class="w-full h-full rounded"
+                                src="https://www.youtube.com/embed/GGu1MUUJCQA"
                                 allowfullscreen>
                         </iframe>
                     </div>
-                    <a href="https://www.youtube.com/watch?v=GGu1MUUJCQA">Presionar si el video no funciona</a>
+                    <a href="https://www.youtube.com/watch?v=GGu1MUUJCQA" class="text-blue-600 underline">Presionar si el video no funciona</a>
                 </div>
+
             </div>
         </section>
-        <hr>
-        
-         <!-- Sección para cuestionario -->
-        <section id="cuestionario">
-            <h1>Cuentanos sobre tu experiencia con los liches</h1>
-            <p>Comparte brevemente tu experiencia enfrentando a un liche: contexto, dificultad y resultados.</p>
 
-            <form id="form-cuestionario" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>#cuestionario" style="text-align:left;">
-                <!-- 1. Nombre de Tenno -->
-                <h2>Nombre de Tenno</h2>
-                <input type="text" name="tenno_name" placeholder="Escribe tu nombre o alias en el juego." style="width:100%; max-width:640px; padding:8px;">
+        <hr class="border-gray-400 my-12">
 
-                <!-- 2. Plataforma de juego -->
-                <h2>Plataforma de juego</h2>
-                <select name="plataforma" style="width:100%; max-width:420px; padding:8px;">
-                    <option value="">-- Selecciona plataforma --</option>
-                    <option>PC</option>
-                    <option>PlayStation</option>
-                    <option>Xbox</option>
-                    <option>Nintendo Switch</option>
-                </select><br>
-                <small>Selecciona la plataforma en la que juegas Warframe.</small>
+        <!-- FORMULARIO -->
+        <section id="cuestionario" class="mb-20">
+            <h2 class="text-3xl font-bold text-center mb-10">Cuéntanos tu experiencia con los Liches</h2>
 
-                <!-- 3. ¿Has enfrentado a un Kuva Lich? -->
-                <h2>¿Has enfrentado a un Kuva Lich?</h2>
-                <label><input type="radio" name="tuvo_kuva" value="si"> Sí</label>
-                <label style="margin-left:12px;"><input type="radio" name="tuvo_kuva" value="no"> No</label>
-                <br><small>Indica si ya has tenido tu primer encuentro con un Kuva Lich.</small>
+            <div class="bg-orange-200 p-8 rounded-xl shadow-lg max-w-3xl mx-auto">
 
-                <!-- 4. ¿Cuántos Liches o Hermanas has derrotado? -->
-                <h2>¿Cuántos Liches o Hermanas has derrotado?</h2>
-                <input type="number" name="liches_derrotados" min="0" placeholder="Ej: 12" style="width:160px; padding:6px;">
-                <br><small>Escribe el número total de enemigos convertidos o vencidos.</small>
+                <form id="form-cuestionario" method="post"
+                      action="<?php echo $_SERVER['PHP_SELF']; ?>#cuestionario"
+                      class="space-y-6">
 
-                <!-- 5. Tipo de enemigo que prefieres enfrentar -->
-                <h2>Tipo de enemigo que prefieres enfrentar</h2>
-                <label><input type="checkbox" name="pref[]" value="kuva"> Kuva Liches</label><br>
-                <label><input type="checkbox" name="pref[]" value="parvos"> Hermanas de Parvos</label><br>
-                <label><input type="checkbox" name="pref[]" value="codas"> Códas (en el modo The Index)</label><br>
-                <label><input type="checkbox" name="pref[]" value="ninguno"> Ninguno en especial</label><br>
-                <small>Marca todos los que te resulten más interesantes.</small>
+                    <div>
+                        <label class="block font-semibold mb-2">Nombre de Tenno</label>
+                        <input type="text" name="tenno_name"
+                               class="w-full p-3 bg-white border rounded">
+                    </div>
 
-                <!-- 6. Arma más valiosa obtenida de un Lich o Hermana -->
-                <h2>Arma más valiosa obtenida de un Lich o Hermana</h2>
-                <textarea name="arma_valiosa" rows="4" style="width:100%; max-width:640px; padding:8px;" placeholder="Describe cuál fue tu mejor recompensa y por qué te gusta."></textarea>
+                    <div>
+                        <label class="block font-semibold mb-2">Plataforma de juego</label>
+                        <select name="plataforma"
+                                class="w-full p-3 bg-white border rounded">
+                            <option value="">-- Selecciona plataforma --</option>
+                            <option>PC</option>
+                            <option>PlayStation</option>
+                            <option>Xbox</option>
+                            <option>Nintendo Switch</option>
+                        </select>
+                    </div>
 
-                <!-- 7. Nivel promedio de rabia de tus Liches antes de vencerlos -->
-                <h2>Nivel promedio de rabia de tus Liches antes de vencerlos</h2>
-                <label style="display:block; margin-bottom:6px;">1️⃣ Calmo — 2️⃣ Irritado — 3️⃣ Furioso — 4️⃣ Enloquecido — 5️⃣ Imparable</label>
-                <input type="range" name="nivel_rabia" min="1" max="5" value="3" step="1" style="width:100%; max-width:575px;">
-                <br><small>Mueve el control para indicar la dificultad promedio que sueles enfrentar.</small>
+                    <div>
+                        <label class="block font-semibold mb-2">¿Has enfrentado un Kuva Lich?</label>
+                        <div class="flex gap-6">
+                            <label><input type="radio" name="tuvo_kuva" value="si"> Sí</label>
+                            <label><input type="radio" name="tuvo_kuva" value="no"> No</label>
+                        </div>
+                    </div>
 
-                <!-- 8. Fecha en que obtuviste tu primer Lich o Hermana -->
-                <h2>Fecha en que obtuviste tu primer Lich o Hermana</h2>
-                <input type="date" name="fecha_primer" style="padding:6px;">
-                <br><small>Indica aproximadamente cuándo comenzaste a enfrentarlos.</small>
+                    <div>
+                        <label class="block font-semibold mb-2">¿Cuántos Liches o Hermanas has derrotado?</label>
+                        <input type="number" name="liches_derrotados" min="0"
+                               class="w-full p-3 bg-white border rounded">
+                    </div>
 
-                <!-- 9. ¿Qué te gustaría que añadieran para mejorar el sistema Coda? -->
-                <h2>¿Qué te gustaría que añadieran para mejorar el sistema Coda?</h2>
-                <textarea name="reliquia_sugerencia" rows="5" style="width:100%; max-width:640px; padding:8px;" placeholder="Da tu opinión o sugiere ideas para nuevas mecánicas o recompensas."></textarea>
+                    <div>
+                        <label class="block font-semibold mb-2">Tipo de enemigo que prefieres enfrentar</label>
 
-                <!-- 10. Califica tu satisfacción general con el sistema de Liches (1 a 10) -->
-                <h2>Califica tu satisfacción general con el sistema de Liches (1 a 10)</h2>
-                <input type="number" name="satisfaccion" min="1" max="10" placeholder="Ej: 8" style="width:120px; padding:6px;">
-                <br><small>Del 1 (muy insatisfecho) al 10 (muy satisfecho).</small>
+                        <div class="space-y-1">
+                            <label class="block"><input type="checkbox" name="pref[]" value="kuva"> Kuva Liches</label>
+                            <label class="block"><input type="checkbox" name="pref[]" value="parvos"> Hermanas de Parvos</label>
+                            <label class="block"><input type="checkbox" name="pref[]" value="codas"> Códas (The Index)</label>
+                            <label class="block"><input type="checkbox" name="pref[]" value="ninguno"> Ninguno en especial</label>
+                        </div>
+                    </div>
 
-                <div style="margin-top:12px;">
-                    <button type="reset">Deshacer</button>
-                    <button type="submit">Enviar</button>
-                </div>
-            </form>
+                    <div>
+                        <label class="block font-semibold mb-2">Arma más valiosa obtenida</label>
+                        <textarea name="arma_valiosa" rows="4"
+                                  class="w-full p-3 bg-white border rounded"></textarea>
+                    </div>
 
-            <!-- Procesar y mostrar los datos enviados -->
+                    <div>
+                        <label class="block font-semibold mb-2">Nivel promedio de rabia</label>
+                        <input type="range" name="nivel_rabia" min="1" max="5" value="3"
+                               class="w-full">
+                    </div>
+
+                    <div>
+                        <label class="block font-semibold mb-2">Fecha del primer Lich/Hermana</label>
+                        <input type="date" name="fecha_primer"
+                               class="w-full p-3 bg-white border rounded">
+                    </div>
+
+                    <div>
+                        <label class="block font-semibold mb-2">¿Qué mejorarías del sistema Coda?</label>
+                        <textarea name="reliquia_sugerencia" rows="5"
+                                  class="w-full p-3 bg-white border rounded"></textarea>
+                    </div>
+
+                    <div>
+                        <label class="block font-semibold mb-2">Satisfacción general (1 a 10)</label>
+                        <input type="number" name="satisfaccion" min="1" max="10"
+                               class="w-full p-3 bg-white border rounded">
+                    </div>
+
+                    <div class="flex justify-between mt-6">
+                        <button type="reset" class="bg-gray-300 px-4 py-2 rounded">Deshacer</button>
+                        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">Enviar</button>
+                    </div>
+
+                </form>
+            </div>
+
+            <!-- Procesamiento PHP -->
             <?php
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                echo '<div style="background-color: lime; padding: 20px; border-radius: 10px; margin-top: 20px; max-width: 700px; margin-left: auto; margin-right: auto;">';
-                echo '<h3 style="color: #333; margin-top: 0;">Datos enviados:</h3>';
-                echo '<ul style="list-style-type: none; padding: 0; margin: 0;">';
-                
-                // Nombre de Tenno
+                echo '<div class="bg-lime-300 p-6 mt-10 rounded-xl max-w-3xl mx-auto shadow-lg">';
+                echo '<h3 class="text-2xl font-bold mb-4">Datos enviados:</h3>';
+                echo '<ul class="space-y-2 text-lg">';
+
                 echo '<li><strong>Nombre de Tenno:</strong> ' . htmlspecialchars($_POST['tenno_name']) . '</li>';
-                
-                // Plataforma
                 echo '<li><strong>Plataforma:</strong> ' . htmlspecialchars($_POST['plataforma']) . '</li>';
-                
-                // Enfrentó Kuva Lich
-                echo '<li><strong>¿Has enfrentado a un Kuva Lich?:</strong> ' . htmlspecialchars($_POST['tuvo_kuva']) . '</li>';
-                
-                // Número de Liches derrotados
-                echo '<li><strong>Liches derrotados:</strong> ' . htmlspecialchars($_POST['liches_derrotados']) . '</li>';
-                
-                // Tipos preferidos
-                if(isset($_POST['pref']) && is_array($_POST['pref'])) {
-                    echo '<li><strong>Tipos preferidos:</strong> ' . htmlspecialchars(implode(', ', $_POST['pref'])) . '</li>';
+                echo '<li><strong>¿Kuva Lich?:</strong> ' . htmlspecialchars($_POST['tuvo_kuva']) . '</li>';
+                echo '<li><strong>Cantidad derrotados:</strong> ' . htmlspecialchars($_POST['liches_derrotados']) . '</li>';
+
+                if (isset($_POST['pref'])) {
+                    echo '<li><strong>Preferencias:</strong> ' . htmlspecialchars(implode(", ", $_POST['pref'])) . '</li>';
                 }
-                
-                // Arma más valiosa
-                echo '<li><strong>Arma más valiosa:</strong> ' . htmlspecialchars($_POST['arma_valiosa']) . '</li>';
-                
-                // Nivel de rabia
+
+                echo '<li><strong>Arma valiosa:</strong> ' . htmlspecialchars($_POST['arma_valiosa']) . '</li>';
                 echo '<li><strong>Nivel de rabia:</strong> ' . htmlspecialchars($_POST['nivel_rabia']) . '</li>';
-                
-                // Fecha primer Lich
-                echo '<li><strong>Fecha primer Lich:</strong> ' . htmlspecialchars($_POST['fecha_primer']) . '</li>';
-                
-                // Sugerencia para sistema Coda
-                echo '<li><strong>Sugerencia sistema Coda:</strong> ' . htmlspecialchars($_POST['reliquia_sugerencia']) . '</li>';
-                
-                // Satisfacción general
-                echo '<li><strong>Satisfacción general:</strong> ' . htmlspecialchars($_POST['satisfaccion']) . '/10</li>';
-                
-                echo '</ul>';
-                echo '</div>';
+                echo '<li><strong>Fecha:</strong> ' . htmlspecialchars($_POST['fecha_primer']) . '</li>';
+                echo '<li><strong>Sugerencias Coda:</strong> ' . htmlspecialchars($_POST['reliquia_sugerencia']) . '</li>';
+                echo '<li><strong>Satisfacción:</strong> ' . htmlspecialchars($_POST['satisfaccion']) . '/10</li>';
+
+                echo '</ul></div>';
             }
             ?>
+
         </section>
+
     </main>
 
-    <!-- Pie de página: Contactos -->
-    <footer id="contactos">
-        <h1>Contactos</h1>
-        <p>Teléfono: +593 97 904 0773</p>
-        <p>Email 1: ljanchatuna@espe.edu.ec</p>
-        <p>Email 2: leninjosue2006@gmail.com</p>
+    <!-- FOOTER -->
+    <footer id="contactos" class="bg-yellow-300 py-6 text-center mt-20 shadow-inner">
+        <h2 class="text-2xl font-bold mb-2">Contactos</h2>
+        <p class="text-lg">Teléfono: +593 97 904 0773</p>
+        <p class="text-lg">Email 1: ljanchatuna@espe.edu.ec</p>
+        <p class="text-lg">Email 2: leninjosue2006@gmail.com</p>
     </footer>
 
 </body>
