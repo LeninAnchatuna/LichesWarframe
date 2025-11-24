@@ -345,75 +345,93 @@
                     <div class="card border-warning border-3 rounded-4 bg-light">
                         <div class="card-body">
             <form id="form-cuestionario" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>#cuestionario">
-                <!-- 1. Nombre de Tenno -->
-                <h2 class="h5 mt-4">Nombre de Tenno</h2>
-                <input type="text" name="tenno_name" placeholder="Escribe tu nombre o alias en el juego." class="form-control mb-3">
-
-                <!-- 2. Plataforma de juego -->
-                <h2 class="h5">Plataforma de juego</h2>
-                <select name="plataforma" class="form-select mb-2">
-                    <option value="">-- Selecciona plataforma --</option>
-                    <option>PC</option>
-                    <option>PlayStation</option>
-                    <option>Xbox</option>
-                    <option>Nintendo Switch</option>
-                </select>
+                <!-- 1. Nombre de Tenno y 2. Plataforma de juego -->
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <h2 class="h5 mt-4">Nombre de Tenno</h2>
+                        <input type="text" name="tenno_name" placeholder="Escribe tu nombre o alias en el juego." class="form-control">
+                    </div>
+                    <div class="col-md-6">
+                        <h2 class="h5 mt-4">Plataforma de juego</h2>
+                        <select name="plataforma" class="form-select">
+                            <option value="">-- Selecciona plataforma --</option>
+                            <option>PC</option>
+                            <option>PlayStation</option>
+                            <option>Xbox</option>
+                            <option>Nintendo Switch</option>
+                        </select>
+                    </div>
+                </div>
                 <small class="text-muted d-block mb-3">Selecciona la plataforma en la que juegas Warframe.</small>
 
-                <!-- 3. ¿Has enfrentado a un Kuva Lich? -->
-                <h2 class="h5">¿Has enfrentado a un Kuva Lich?</h2>
-                <div class="form-check mb-2">
-                    <input class="form-check-input" type="radio" name="tuvo_kuva" value="si" id="kuva_si">
-                    <label class="form-check-label" for="kuva_si">Sí</label>
+                <!-- 3. ¿Has enfrentado a un Kuva Lich? y 4. ¿Cuántos Liches o Hermanas has derrotado? -->
+                <div class="row g-3 mt-2">
+                    <div class="col-md-6">
+                        <h2 class="h5">¿Has enfrentado a un Kuva Lich?</h2>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="radio" name="tuvo_kuva" value="si" id="kuva_si">
+                            <label class="form-check-label" for="kuva_si">Sí</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="tuvo_kuva" value="no" id="kuva_no">
+                            <label class="form-check-label" for="kuva_no">No</label>
+                        </div>
+                        <small class="text-muted d-block mt-2">Indica si ya has tenido tu primer encuentro con un Kuva Lich.</small>
+                    </div>
+                    <div class="col-md-6">
+                        <h2 class="h5">¿Cuántos Liches o Hermanas has derrotado?</h2>
+                        <input type="number" name="liches_derrotados" min="0" placeholder="Ej: 12" class="form-control mb-2">
+                        <small class="text-muted d-block">Escribe el número total de enemigos convertidos o vencidos.</small>
+                    </div>
                 </div>
-                <div class="form-check mb-3">
-                    <input class="form-check-input" type="radio" name="tuvo_kuva" value="no" id="kuva_no">
-                    <label class="form-check-label" for="kuva_no">No</label>
-                </div>
-                <small class="text-muted d-block mb-3">Indica si ya has tenido tu primer encuentro con un Kuva Lich.</small>
-
-                <!-- 4. ¿Cuántos Liches o Hermanas has derrotado? -->
-                <h2 class="h5">¿Cuántos Liches o Hermanas has derrotado?</h2>
-                <input type="number" name="liches_derrotados" min="0" placeholder="Ej: 12" class="form-control mb-2">
-                <small class="text-muted d-block mb-3">Escribe el número total de enemigos convertidos o vencidos.</small>
 
                 <!-- 5. Tipo de enemigo que prefieres enfrentar -->
-                <h2 class="h5">Tipo de enemigo que prefieres enfrentar</h2>
-                <div class="form-check mb-2">
-                    <input class="form-check-input" type="checkbox" name="pref[]" value="kuva" id="pref_kuva">
-                    <label class="form-check-label" for="pref_kuva">Kuva Liches</label>
+                <h2 class="h5 mt-4">Tipo de enemigo que prefieres enfrentar</h2>
+                <div class="row g-2">
+                    <div class="col-md-6">
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" name="pref[]" value="kuva" id="pref_kuva">
+                            <label class="form-check-label" for="pref_kuva">Kuva Liches</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="pref[]" value="parvos" id="pref_parvos">
+                            <label class="form-check-label" for="pref_parvos">Hermanas de Parvos</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" name="pref[]" value="codas" id="pref_codas">
+                            <label class="form-check-label" for="pref_codas">Códas (en el modo The Index)</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="pref[]" value="ninguno" id="pref_ninguno">
+                            <label class="form-check-label" for="pref_ninguno">Ninguno en especial</label>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-check mb-2">
-                    <input class="form-check-input" type="checkbox" name="pref[]" value="parvos" id="pref_parvos">
-                    <label class="form-check-label" for="pref_parvos">Hermanas de Parvos</label>
-                </div>
-                <div class="form-check mb-2">
-                    <input class="form-check-input" type="checkbox" name="pref[]" value="codas" id="pref_codas">
-                    <label class="form-check-label" for="pref_codas">Códas (en el modo The Index)</label>
-                </div>
-                <div class="form-check mb-3">
-                    <input class="form-check-input" type="checkbox" name="pref[]" value="ninguno" id="pref_ninguno">
-                    <label class="form-check-label" for="pref_ninguno">Ninguno en especial</label>
-                </div>
-                <small class="text-muted d-block mb-3">Marca todos los que te resulten más interesantes.</small>
+                <small class="text-muted d-block mb-3 mt-2">Marca todos los que te resulten más interesantes.</small>
 
                 <!-- 6. Arma más valiosa obtenida de un Lich o Hermana -->
-                <h2 class="h5">Arma más valiosa obtenida de un Lich o Hermana</h2>
+                <h2 class="h5 mt-4">Arma más valiosa obtenida de un Lich o Hermana</h2>
                 <textarea name="arma_valiosa" rows="4" placeholder="Describe cuál fue tu mejor recompensa y por qué te gusta." class="form-control mb-3"></textarea>
 
-                <!-- 7. Nivel promedio de rabia de tus Liches antes de vencerlos -->
-                <h2 class="h5">Nivel promedio de rabia de tus Liches antes de vencerlos</h2>
-                <label class="form-label">1️⃣ Calmo — 2️⃣ Irritado — 3️⃣ Furioso — 4️⃣ Enloquecido — 5️⃣ Imparable</label>
-                <input type="range" name="nivel_rabia" min="1" max="5" value="3" step="1" class="form-range mb-3">
-                <small class="text-muted d-block mb-3">Mueve el control para indicar la dificultad promedio que sueles enfrentar.</small>
-
-                <!-- 8. Fecha en que obtuviste tu primer Lich o Hermana -->
-                <h2 class="h5">Fecha en que obtuviste tu primer Lich o Hermana</h2>
-                <input type="date" name="fecha_primer" class="form-control mb-2">
-                <small class="text-muted d-block mb-3">Indica aproximadamente cuándo comenzaste a enfrentarlos.</small>
+                <!-- 7. Nivel promedio de rabia y 8. Fecha en que obtuviste tu primer Lich o Hermana -->
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <h2 class="h5">Nivel promedio de rabia de tus Liches</h2>
+                        <label class="form-label">1️⃣ Calmo — 2️⃣ Irritado — 3️⃣ Furioso — 4️⃣ Enloquecido — 5️⃣ Imparable</label>
+                        <input type="range" name="nivel_rabia" min="1" max="5" value="3" step="1" class="form-range">
+                        <small class="text-muted d-block mt-2">Mueve el control para indicar la dificultad promedio.</small>
+                    </div>
+                    <div class="col-md-6">
+                        <h2 class="h5">Fecha de tu primer Lich o Hermana</h2>
+                        <input type="date" name="fecha_primer" class="form-control mb-2">
+                        <small class="text-muted d-block">Indica aproximadamente cuándo comenzaste a enfrentarlos.</small>
+                    </div>
+                </div>
 
                 <!-- 9. ¿Qué te gustaría que añadieran para mejorar el sistema Coda? -->
-                <h2 class="h5">¿Qué te gustaría que añadieran para mejorar el sistema Coda?</h2>
+                <h2 class="h5 mt-4">¿Qué te gustaría que añadieran para mejorar el sistema Coda?</h2>
                 <textarea name="reliquia_sugerencia" rows="5" placeholder="Da tu opinión o sugiere ideas para nuevas mecánicas o recompensas." class="form-control mb-3"></textarea>
 
                 <!-- 10. Califica tu satisfacción general con el sistema de Liches (1 a 10) -->
